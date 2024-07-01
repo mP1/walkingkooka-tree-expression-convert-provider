@@ -17,9 +17,19 @@
 
 package walkingkooka.tree.expression.convert.provider;
 
+import walkingkooka.convert.Converter;
+import walkingkooka.net.AbsoluteUrl;
+import walkingkooka.net.Url;
 import walkingkooka.reflect.PublicStaticHelper;
 
 public final class TreeExpressionConvertProviders implements PublicStaticHelper {
+    /**
+     * This is the base {@link AbsoluteUrl} for all {@link Converter} in this package. The name of each
+     * converter will be appended to this base.
+     */
+    public final static AbsoluteUrl BASE_URL = Url.parseAbsolute(
+            "https://github.com/mP1/walkingkooka-tree/" + Converter.class.getSimpleName()
+    );
 
     /**
      * Stop creation
