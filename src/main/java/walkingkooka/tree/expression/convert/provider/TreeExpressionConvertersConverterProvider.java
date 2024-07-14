@@ -49,8 +49,8 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
     }
 
     @Override
-    public <C extends ConverterContext> Optional<Converter<C>> converter(final ConverterName name,
-                                                                         final List<?> values) {
+    public <C extends ConverterContext> Converter<C> converter(final ConverterName name,
+                                                               final List<?> values) {
         Objects.requireNonNull(name, "name");
         Objects.requireNonNull(values, "values");
 
@@ -84,13 +84,10 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
                 );
                 break;
             default:
-                converter = null;
-                break;
+                throw new IllegalArgumentException("Unknown converter " + name);
         }
 
-        return Optional.ofNullable(
-                Cast.to(converter)
-        );
+        return Cast.to(converter);
     }
 
     private <C extends ConverterContext> Converter<C> getConverterFromValues(final List<?> values,
