@@ -27,6 +27,8 @@ import walkingkooka.convert.provider.ConverterName;
 import walkingkooka.convert.provider.ConverterProvider;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.net.UrlPath;
+import walkingkooka.plugin.ProviderContext;
+import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.ExpressionNumberConverters;
 
@@ -50,17 +52,23 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
     }
 
     @Override
-    public <C extends ConverterContext> Converter<C> converter(final ConverterSelector selector) {
+    public <C extends ConverterContext> Converter<C> converter(final ConverterSelector selector,
+                                                               final ProviderContext context) {
         Objects.requireNonNull(selector, "selector");
 
-        return selector.evaluateText(this);
+        return selector.evaluateText(
+                this,
+                context
+        );
     }
 
     @Override
     public <C extends ConverterContext> Converter<C> converter(final ConverterName name,
-                                                               final List<?> values) {
+                                                               final List<?> values,
+                                                               final ProviderContext context) {
         Objects.requireNonNull(name, "name");
         Objects.requireNonNull(values, "values");
+        Objects.requireNonNull(context, "context");
 
         Converter<?> converter;
 
