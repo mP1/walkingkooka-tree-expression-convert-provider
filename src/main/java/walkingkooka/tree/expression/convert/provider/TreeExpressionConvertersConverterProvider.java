@@ -82,6 +82,12 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
                 }
                 converter = ExpressionNumberConverters.numberOrExpressionNumberToNumber();
                 break;
+            case NUMBER_TO_NUMBER_STRING:
+                if (0 != count) {
+                    throw new IllegalArgumentException("Expected 0 values got " + count + " " + values);
+                }
+                converter = ExpressionNumberConverters.numberToNumber();
+                break;
             case TO_EXPRESSION_NUMBER_THEN_STRING:
                 if (2 != count) {
                     throw new IllegalArgumentException("Expected 2 values got " + count + " " + values);
@@ -120,6 +126,7 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
     public Set<ConverterInfo> converterInfos() {
         return Sets.of(
                 converterInfo(NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER),
+                converterInfo(NUMBER_TO_NUMBER),
                 converterInfo(TO_EXPRESSION_NUMBER_THEN),
                 converterInfo(TO_NUMBER_OR_EXPRESSION_NUMBER)
         );
@@ -128,6 +135,10 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
     private final static String NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER_STRING = "number-or-expression-number-to-number";
 
     final static ConverterName NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER = ConverterName.with(NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER_STRING);
+
+    private final static String NUMBER_TO_NUMBER_STRING = "number-to-number";
+
+    final static ConverterName NUMBER_TO_NUMBER = ConverterName.with(NUMBER_TO_NUMBER_STRING);
 
     private final static String TO_EXPRESSION_NUMBER_THEN_STRING = "to-expression-number-then";
 
