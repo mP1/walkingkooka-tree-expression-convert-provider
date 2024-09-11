@@ -23,6 +23,7 @@ import walkingkooka.collect.set.Sets;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.ConverterContext;
 import walkingkooka.convert.provider.ConverterInfo;
+import walkingkooka.convert.provider.ConverterInfoSet;
 import walkingkooka.convert.provider.ConverterName;
 import walkingkooka.convert.provider.ConverterProvider;
 import walkingkooka.convert.provider.ConverterSelector;
@@ -122,16 +123,6 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
         return Cast.to(value);
     }
 
-    @Override
-    public Set<ConverterInfo> converterInfos() {
-        return Sets.of(
-                converterInfo(NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER),
-                converterInfo(NUMBER_TO_NUMBER),
-                converterInfo(TO_EXPRESSION_NUMBER_THEN),
-                converterInfo(TO_NUMBER_OR_EXPRESSION_NUMBER)
-        );
-    }
-
     private final static String NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER_STRING = "number-or-expression-number-to-number";
 
     final static ConverterName NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER = ConverterName.with(NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER_STRING);
@@ -161,6 +152,20 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
                 name
         );
     }
+
+    @Override
+    public ConverterInfoSet converterInfos() {
+        return INFOS;
+    }
+
+    private final static ConverterInfoSet INFOS = ConverterInfoSet.with(
+            Sets.of(
+                    converterInfo(NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER),
+                    converterInfo(NUMBER_TO_NUMBER),
+                    converterInfo(TO_EXPRESSION_NUMBER_THEN),
+                    converterInfo(TO_NUMBER_OR_EXPRESSION_NUMBER)
+            )
+    );
 
     @Override
     public String toString() {
