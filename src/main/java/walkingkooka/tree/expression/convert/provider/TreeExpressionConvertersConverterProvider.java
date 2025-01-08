@@ -29,14 +29,11 @@ import walkingkooka.convert.provider.ConverterProvider;
 import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.net.UrlPath;
 import walkingkooka.plugin.ProviderContext;
-import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.ExpressionNumberConverters;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * A {@link ConverterProvider} for the {@link Converter converter(s)} in {@link walkingkooka.tree.expression.ExpressionNumberConverters}.
@@ -58,8 +55,8 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
         Objects.requireNonNull(selector, "selector");
 
         return selector.evaluateValueText(
-                this,
-                context
+            this,
+            context
         );
     }
 
@@ -94,8 +91,8 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
                     throw new IllegalArgumentException("Expected 2 values got " + count + " " + values);
                 }
                 converter = ExpressionNumberConverters.toExpressionNumberThen(
-                        getConverterFromValues(copy, 0),
-                        getConverterFromValues(copy, 1)
+                    getConverterFromValues(copy, 0),
+                    getConverterFromValues(copy, 1)
                 );
                 break;
             case TO_NUMBER_OR_EXPRESSION_NUMBER_STRING:
@@ -103,7 +100,7 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
                     throw new IllegalArgumentException("Expected 1 values got " + count + " " + values);
                 }
                 converter = ExpressionNumberConverters.toNumberOrExpressionNumber(
-                        getConverterFromValues(copy, 0)
+                    getConverterFromValues(copy, 0)
                 );
                 break;
             default:
@@ -144,12 +141,12 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
      */
     private static ConverterInfo converterInfo(final ConverterName name) {
         return ConverterInfo.with(
-                TreeExpressionConvertProviders.BASE_URL.appendPath(
-                        UrlPath.parse(
-                                name.value()
-                        )
-                ),
-                name
+            TreeExpressionConvertProviders.BASE_URL.appendPath(
+                UrlPath.parse(
+                    name.value()
+                )
+            ),
+            name
         );
     }
 
@@ -159,12 +156,12 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
     }
 
     private final static ConverterInfoSet INFOS = ConverterInfoSet.with(
-            Sets.of(
-                    converterInfo(NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER),
-                    converterInfo(NUMBER_TO_NUMBER),
-                    converterInfo(TO_EXPRESSION_NUMBER_THEN),
-                    converterInfo(TO_NUMBER_OR_EXPRESSION_NUMBER)
-            )
+        Sets.of(
+            converterInfo(NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER),
+            converterInfo(NUMBER_TO_NUMBER),
+            converterInfo(TO_EXPRESSION_NUMBER_THEN),
+            converterInfo(TO_NUMBER_OR_EXPRESSION_NUMBER)
+        )
     );
 
     @Override

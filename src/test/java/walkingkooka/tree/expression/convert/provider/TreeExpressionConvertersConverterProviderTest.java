@@ -20,7 +20,6 @@ package walkingkooka.tree.expression.convert.provider;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.convert.provider.ConverterProviderTesting;
-import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.plugin.ProviderContext;
 import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.reflect.JavaVisibility;
@@ -33,72 +32,72 @@ public final class TreeExpressionConvertersConverterProviderTest implements Conv
     @Test
     public void testConverterSelectorNumberOrExpressionNumberToNumber() {
         this.converterAndCheck(
-                TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER + "",
-                CONTEXT,
-                ExpressionNumberConverters.numberOrExpressionNumberToNumber()
+            TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER + "",
+            CONTEXT,
+            ExpressionNumberConverters.numberOrExpressionNumberToNumber()
         );
     }
 
     @Test
     public void testConverterSelectorToNumberOrExpressionNumber() {
         this.converterAndCheck(
-                TreeExpressionConvertersConverterProvider.TO_NUMBER_OR_EXPRESSION_NUMBER + " (" + TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER + ")",
-                CONTEXT,
-                ExpressionNumberConverters.toNumberOrExpressionNumber(
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber()
-                )
+            TreeExpressionConvertersConverterProvider.TO_NUMBER_OR_EXPRESSION_NUMBER + " (" + TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER + ")",
+            CONTEXT,
+            ExpressionNumberConverters.toNumberOrExpressionNumber(
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber()
+            )
         );
     }
 
     @Test
     public void testConverterSelectorToExpressionNumberThen() {
         this.converterAndCheck(
-                TreeExpressionConvertersConverterProvider.TO_EXPRESSION_NUMBER_THEN + " (" + TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER + "," + TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER + ")",
-                CONTEXT,
-                ExpressionNumberConverters.toExpressionNumberThen(
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber(),
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber()
-                )
+            TreeExpressionConvertersConverterProvider.TO_EXPRESSION_NUMBER_THEN + " (" + TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER + "," + TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER + ")",
+            CONTEXT,
+            ExpressionNumberConverters.toExpressionNumberThen(
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber(),
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber()
+            )
         );
     }
 
     @Test
     public void testConverterNameNumberOrExpressionNumberToNumber() {
         this.converterAndCheck(
-                TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER,
-                Lists.empty(),
-                CONTEXT,
-                ExpressionNumberConverters.numberOrExpressionNumberToNumber()
+            TreeExpressionConvertersConverterProvider.NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER,
+            Lists.empty(),
+            CONTEXT,
+            ExpressionNumberConverters.numberOrExpressionNumberToNumber()
         );
     }
 
     @Test
     public void testConverterNameToNumberOrExpressionNumber() {
         this.converterAndCheck(
-                TreeExpressionConvertersConverterProvider.TO_NUMBER_OR_EXPRESSION_NUMBER,
-                Lists.of(
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber()
-                ),
-                CONTEXT,
-                ExpressionNumberConverters.toNumberOrExpressionNumber(
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber()
-                )
+            TreeExpressionConvertersConverterProvider.TO_NUMBER_OR_EXPRESSION_NUMBER,
+            Lists.of(
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber()
+            ),
+            CONTEXT,
+            ExpressionNumberConverters.toNumberOrExpressionNumber(
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber()
+            )
         );
     }
 
     @Test
     public void testConverterNameToExpressionNumberThen() {
         this.converterAndCheck(
-                TreeExpressionConvertersConverterProvider.TO_EXPRESSION_NUMBER_THEN,
-                Lists.of(
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber(),
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber()
-                ),
-                CONTEXT,
-                ExpressionNumberConverters.toExpressionNumberThen(
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber(),
-                        ExpressionNumberConverters.numberOrExpressionNumberToNumber()
-                )
+            TreeExpressionConvertersConverterProvider.TO_EXPRESSION_NUMBER_THEN,
+            Lists.of(
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber(),
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber()
+            ),
+            CONTEXT,
+            ExpressionNumberConverters.toExpressionNumberThen(
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber(),
+                ExpressionNumberConverters.numberOrExpressionNumberToNumber()
+            )
         );
     }
 
