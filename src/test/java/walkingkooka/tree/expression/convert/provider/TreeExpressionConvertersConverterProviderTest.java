@@ -23,7 +23,7 @@ import walkingkooka.convert.provider.ConverterProviderTesting;
 import walkingkooka.plugin.ProviderContext;
 import walkingkooka.plugin.ProviderContexts;
 import walkingkooka.reflect.JavaVisibility;
-import walkingkooka.tree.expression.ExpressionNumberConverters;
+import walkingkooka.tree.expression.convert.ExpressionNumberConverters;
 
 public final class TreeExpressionConvertersConverterProviderTest implements ConverterProviderTesting<TreeExpressionConvertersConverterProvider> {
 
