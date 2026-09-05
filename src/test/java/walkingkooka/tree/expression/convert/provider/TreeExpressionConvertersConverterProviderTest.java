@@ -107,11 +107,6 @@ public final class TreeExpressionConvertersConverterProviderTest implements Conv
     }
 
     @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
-    }
-
-    @Override
     public Class<TreeExpressionConvertersConverterProvider> type() {
         return TreeExpressionConvertersConverterProvider.class;
     }
