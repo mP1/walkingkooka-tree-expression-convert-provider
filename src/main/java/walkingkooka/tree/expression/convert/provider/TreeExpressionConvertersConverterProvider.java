@@ -153,7 +153,7 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
         return INFOS;
     }
 
-    private final static ConverterInfoSet INFOS = ConverterInfoSet.with(
+    private final static ConverterInfoSet INFOS = ConverterInfoSet.EMPTY.setElements(
         Sets.of(
             converterInfo(NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER),
             converterInfo(NUMBER_TO_NUMBER),
