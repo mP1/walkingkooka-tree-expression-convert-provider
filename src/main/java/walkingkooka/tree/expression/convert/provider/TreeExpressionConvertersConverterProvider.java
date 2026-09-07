@@ -71,34 +71,32 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
         Converter<?> converter;
 
         final List<?> copy = Lists.immutable(values);
-        final int count = copy.size();
 
         switch (name.value()) {
             case NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER_STRING:
-                if (0 != count) {
-                    throw new IllegalArgumentException("Expected 0 values got " + count + " " + values);
-                }
+                this.noParameterCheck(copy);
                 converter = ExpressionNumberConverters.numberOrExpressionNumberToNumber();
                 break;
             case NUMBER_TO_NUMBER_STRING:
-                if (0 != count) {
-                    throw new IllegalArgumentException("Expected 0 values got " + count + " " + values);
-                }
+                this.noParameterCheck(copy);
+
                 converter = ExpressionNumberConverters.numberToNumber();
                 break;
             case TO_EXPRESSION_NUMBER_THEN_STRING:
-                if (2 != count) {
-                    throw new IllegalArgumentException("Expected 2 values got " + count + " " + values);
-                }
+                this.parameterCountCheck(
+                    copy,
+                    2
+                );
                 converter = ExpressionNumberConverters.toExpressionNumberThen(
                     getConverterFromValues(copy, 0),
                     getConverterFromValues(copy, 1)
                 );
                 break;
             case TO_NUMBER_OR_EXPRESSION_NUMBER_STRING:
-                if (1 != count) {
-                    throw new IllegalArgumentException("Expected 1 values got " + count + " " + values);
-                }
+                this.parameterCountCheck(
+                    copy,
+                    1
+                );
                 converter = ExpressionNumberConverters.toNumberOrExpressionNumber(
                     getConverterFromValues(copy, 0)
                 );
