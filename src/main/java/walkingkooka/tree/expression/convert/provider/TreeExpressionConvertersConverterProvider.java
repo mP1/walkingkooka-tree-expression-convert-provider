@@ -30,13 +30,13 @@ import walkingkooka.convert.provider.ConverterSelector;
 import walkingkooka.net.UrlPath;
 import walkingkooka.plugin.ProviderContext;
 import walkingkooka.text.CharSequences;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverters;
+import walkingkooka.tree.expression.convert.TreeConverters;
 
 import java.util.List;
 import java.util.Objects;
 
 /**
- * A {@link ConverterProvider} for the {@link Converter converter(s)} in {@link walkingkooka.tree.expression.ExpressionNumberConverters}.
+ * A {@link ConverterProvider} for the {@link Converter converter(s)} in {@link walkingkooka.tree.expression.TreeConverters}.
  */
 final class TreeExpressionConvertersConverterProvider implements ConverterProvider {
 
@@ -75,19 +75,19 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
         switch (name.value()) {
             case NUMBER_OR_EXPRESSION_NUMBER_TO_NUMBER_STRING:
                 this.noParameterCheck(copy);
-                converter = ExpressionNumberConverters.numberOrExpressionNumberToNumber();
+                converter = TreeConverters.numberOrExpressionNumberToNumber();
                 break;
             case NUMBER_TO_NUMBER_STRING:
                 this.noParameterCheck(copy);
 
-                converter = ExpressionNumberConverters.numberToNumber();
+                converter = TreeConverters.numberToNumber();
                 break;
             case TO_EXPRESSION_NUMBER_THEN_STRING:
                 this.parameterCountCheck(
                     copy,
                     2
                 );
-                converter = ExpressionNumberConverters.toExpressionNumberThen(
+                converter = TreeConverters.toExpressionNumberThen(
                     getConverterFromValues(copy, 0),
                     getConverterFromValues(copy, 1)
                 );
@@ -97,7 +97,7 @@ final class TreeExpressionConvertersConverterProvider implements ConverterProvid
                     copy,
                     1
                 );
-                converter = ExpressionNumberConverters.toNumberOrExpressionNumber(
+                converter = TreeConverters.toNumberOrExpressionNumber(
                     getConverterFromValues(copy, 0)
                 );
                 break;
